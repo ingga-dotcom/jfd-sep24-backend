@@ -19,3 +19,6 @@ http.createServer ( function(request, response) {
     console.log('server sudah nyala, buka http://localhost:3000')
 
 })
+
+//tes nambah komentar
+//kirim ke 2X
