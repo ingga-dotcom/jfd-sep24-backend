@@ -13,19 +13,40 @@ http.createServer ( function(request, response) {
     if (request.url == '/') {
     response.end (`<h1>WELCOME TO MY WEBSITE</h1><hr>`)
     }
+
+    //halaman profile
     else if (request.url  == '/profile'){
+
+        let tahun_lahir = 1945
+        let tahun_ini = 2024
+        let umur = tahun_ini - tahun_lahir
+
         response.end (
         `<ul>
             <li>nama lengkap : Dewi Ingga Wijayanti</li>
             <li>alamat : central park residence</li>
+            <li>tanggal lahir : 27 september ${tahun_lahir}</li>
+            <li>umur : ${umur} tahun</li>
         </ul>`
         )
     }
+
+
+    //halaman hubungi-saya
     else if (request.url == '/hubungi-saya') {
+        let kontak = {
+            mob : '601111001113',
+            email : 'inggadewi.w@gmail.com',
+            ig : 'ingga_syalala',
+            linkedin : 'Dewi Ingga Wijayanti',
+        }
+
         response.end (
         `<ul>
-            <li>mobile : 601111001113</li>
-            <li>email : inggadewi.w@gmail.com</li>
+            <li>mobile : ${kontak.mob}</li>
+            <li>email : ${kontak.email}</li>
+            <li>instagram : ${kontak.ig}</li>
+            <li>linkedIn : ${kontak.linkedin}</li>
         </ul>`
 
         )   
