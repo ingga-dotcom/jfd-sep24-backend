@@ -4,6 +4,7 @@
 
 
 const http = require ('http')
+const fs = require ('fs')
 
 http.createServer ( function(request, response) {
     console.log(request.url)
@@ -11,9 +12,7 @@ http.createServer ( function(request, response) {
 
     //halaman utama
     if (request.url == '/') {
-    response.end (`<h1>WELCOME TO MY WEBSITE</h1><hr>)
-    <a href="/profil">Lihat Profil</a>`
-    )
+        fs.createReadStream ('./view/halaman-utama.html').pipe(response)
     }
 
     //halaman profile
