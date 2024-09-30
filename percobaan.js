@@ -11,7 +11,9 @@ http.createServer ( function(request, response) {
 
     //halaman utama
     if (request.url == '/') {
-    response.end (`<h1>WELCOME TO MY WEBSITE</h1><hr>`)
+    response.end (`<h1>WELCOME TO MY WEBSITE</h1><hr>)
+    <a href="/profil">Lihat Profil</a>`
+    )
     }
 
     //halaman profile
@@ -27,7 +29,9 @@ http.createServer ( function(request, response) {
             <li>alamat : central park residence</li>
             <li>tanggal lahir : 27 september ${tahun_lahir}</li>
             <li>umur : ${umur} tahun</li>
-        </ul>`
+        </ul>
+        <br>
+        <a href="/">Balik ke beranda</a>`
         )
     }
 
