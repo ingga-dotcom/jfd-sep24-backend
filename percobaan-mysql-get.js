@@ -20,6 +20,8 @@ db.connect( (error)=>{
         console.log('berhasil tersambung ke mysql')
     }
 })
+
+
 db.query('SELECT * FROM karyawan', function(errorSql, hasil) {
     if (errorSql) {
         console.log(errorSql)
