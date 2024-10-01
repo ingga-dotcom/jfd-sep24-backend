@@ -10,7 +10,7 @@ app.get('/pendidikan', function (req, res) {  //bikin page /pendidikan
 })
 
 app.get('/karyawan', function (req, res) { 
-    res.send('<h1>List Karyawan</h1>')
+    res.send('<h1>List Karyawans</h1>')
 })
 
 
