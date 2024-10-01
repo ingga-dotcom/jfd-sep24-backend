@@ -34,7 +34,18 @@ db.query('SELECT * FROM karyawan', function(errorSql, hasil) {
 
 function getAll_karyawan() {
     return new Promise((resolve, reject) => {  //Promise & Away = memaksa JS supaya berurutan
-    db.query('SELECT * FROM karyawan', function(errorSql, hasil) {
+    
+    
+        let sqlSyntax =  //biar rapi script SQL ini
+        `SELECT
+            kry.*, jbt.nama as jabatan_nama, 
+            jbt.singkatan as jabatan_singkatan,
+            agm.nama as agama_nama
+        FROM karyawan as kry
+        LEFT JOIN jabatan as jbt ON jbt.id = kry.jabatan
+        LEFT JOIN agama as agm ON agm.id = kry.agama;`
+
+        db.query(sqlSyntax, function(errorSql, hasil) {
         if (errorSql) {
             reject(errorSql)
         } else {
@@ -56,15 +67,31 @@ if (request.url == '/') {
 
         //tarik data dari database
         let data = await getAll_karyawan()  //Promise & Away = memaksa JS supaya berurutan
-        console.log (data)
+        
+        //looping data dalam bentuk elemen html
+        let html_list_karyawan = ''
+        for (const i in data) {
+            html_list_karyawan +=
+            `<b>Nama Lengkap</b>: ${data[i].nama}<br>
+            <b>NIK</b>: ${data[i].nik}<br>
+            <b>Tanggal Lahir</b>: ${new Date (data[i].tanggal_lahir).toLocaleDateString ('id-ID')}<br>
+            <b>Alamat</b>: ${data[i].alamat}<br>
+            <b>Jabatan</b>: ${(data[i].jabatan_nama)?data[i].jabatan_nama:'-'}<br>
+            <b>Agama</b>: ${(data[i].agama_nama)?data[i].agama_nama:'-'}<br><br>`
+        }
+
+
+
+
 
         //kirim hasil nya ke front end
         response.end (
             `<h1> Data Karyawan PT Data Informasi Teknologi</h1>
             <hr> 
-            Nama Lengkap: ${data[0].nama}<br>
-            Nomor Induk Karyawan: ${data[0].nik}<br>
-            <pre>${JSON.stringify (data,null, 4)}</pre>`
+            ${html_list_karyawan}`
+            // Nama Lengkap: ${data[0].nama}<br>
+            // Nomor Induk Karyawan: ${data[0].nik}<br>
+            // <pre>${JSON.stringify (data,null, 4)}</pre>`
         )
         console.log (data)
 }
