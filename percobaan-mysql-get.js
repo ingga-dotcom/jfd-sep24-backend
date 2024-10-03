@@ -32,6 +32,7 @@ db.query('SELECT * FROM karyawan', function(errorSql, hasil) {
 })
 
 
+//bikin function untuk narik data karyawan dr database
 function getAll_karyawan() {
     return new Promise((resolve, reject) => {  //Promise & Away = memaksa JS supaya berurutan
     
