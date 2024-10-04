@@ -1,21 +1,38 @@
+<style>
+    .p5 {
+        padding: 5px;
+    }
+</style>    
+
 <h1>List Karyawans</h1>
 
-<table border="3">
+<a href="/karyawan/tambah">
+    <button>+karyawan baru</button>
+</a>
+<br><br>
+
+<table border="1">
 
     <thead>
         <tr>
             <th>NIK</th>
             <th>Nama</th>
             <th>Jabatan</th>
+            <th>Aksi</th>
         </tr>
     </thead>
 
     <tbody>
         <% for (const i in karyawan) {%>
         <tr>
-            <td><%= karyawan[i].nik %></td>
-            <td><%= karyawan[i].nama %></td>
-            <td><%= karyawan[i].jabatan_nama %></td>
+            <td class="p5"><%= karyawan[i].nik %></td>
+            <td class="p5"><%= karyawan[i].nama %></td>
+            <td class="p5"><%= karyawan[i].jabatan_nama %></td>
+            <td class="p5">
+                <a href="/karyawan/detail/<%= karyawan[i].id %>">
+                    <button>rincian</button>
+                </a>
+            </td>
         </tr>
         <%} %>
     </tbody>
@@ -23,6 +40,6 @@
 </table>
 
 
-<pre>
+<!-- <pre>
     <%= JSON.stringify(karyawan , null , 4) %>
-</pre>
+</pre> -->
