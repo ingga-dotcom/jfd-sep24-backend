@@ -23,13 +23,14 @@ db.connect( (error)=>{
 })
 
 
-db.query('SELECT * FROM karyawan', function(errorSql, hasil) {
-    if (errorSql) {
-        console.log(errorSql)
-    } else {
-        console.log(hasil)
-    }
-})
+//ini untuk nge debug aja / menampilkan data di terminal halaman ini ketika diketik $ node percobaan-mysql-get
+// db.query('SELECT * FROM karyawan', function(errorSql, hasil) {
+//     if (errorSql) {
+//         console.log(errorSql)
+//     } else {
+//         console.log(hasil)
+//     }
+// })
 
 
 //bikin function untuk narik data karyawan dr database
@@ -67,7 +68,7 @@ if (request.url == '/') {
     else if (request.url  == '/karyawan'){  
 
         //tarik data dari database
-        let data = await getAll_karyawan()  //Promise & Away = memaksa JS supaya berurutan
+        let data = await getAll_karyawan()
         
         //looping data dalam bentuk elemen html
         let html_list_karyawan = ''
@@ -85,17 +86,18 @@ if (request.url == '/') {
 
 
 
-        //kirim hasil nya ke front end
+        //mengirimkan hasil nya ke front end
         response.end (
             `<h1> Data Karyawan PT Data Informasi Teknologi</h1>
             <hr> 
             ${html_list_karyawan}`
-            // Nama Lengkap: ${data[0].nama}<br>
-            // Nomor Induk Karyawan: ${data[0].nik}<br>
-            // <pre>${JSON.stringify (data,null, 4)}</pre>`
+            // Nama Lengkap: ${data[0].nama}<br>  //
+            // Nomor Induk Karyawan: ${data[0].nik}<br>  //
+            // <pre>${JSON.stringify (data,null, 4)}</pre>`  //
         )
-        console.log (data)
+        //console.log (data)  //
 }
+
 
 }).listen(3000,function(){
     console.log('server active, buka http://localhost:3000')

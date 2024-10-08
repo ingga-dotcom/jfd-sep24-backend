@@ -2,44 +2,51 @@
     .p5 {
         padding: 5px;
     }
-</style>    
+</style>
 
-<h1>List Karyawans</h1>
+<h1>List Karyawan</h1>
+<% if (typeof notifikasi !== 'undefined') { %>
+<span style="color: green;"><b><%= notifikasi %></b></span>
+<br><br>
+<% } %>
 
 <a href="/karyawan/tambah">
-    <button>+karyawan baru</button>
+    <button>+ karyawan baru</button>
 </a>
 <br><br>
 
 <table border="1">
-
     <thead>
         <tr>
             <th>NIK</th>
             <th>Nama</th>
             <th>Jabatan</th>
-            <th>Aksi</th>
+            <th colspan="3">Aksi</th>
         </tr>
     </thead>
-
     <tbody>
-        <% for (const i in karyawan) {%>
-        <tr>
-            <td class="p5"><%= karyawan[i].nik %></td>
-            <td class="p5"><%= karyawan[i].nama %></td>
-            <td class="p5"><%= karyawan[i].jabatan_nama %></td>
-            <td class="p5">
-                <a href="/karyawan/detail/<%= karyawan[i].id %>">
-                    <button>rincian</button>
-                </a>
-            </td>
-        </tr>
-        <%} %>
+        <% for (const i in karyawan) { %>
+            <tr>
+                <td class="p5"><%= karyawan[i].nik %></td>
+                <td class="p5"><%= karyawan[i].nama %></td>
+                <td class="p5"><%= karyawan[i].jabatan_nama %></td>
+                <td class="p5">
+                    <a href="/karyawan/detail/<%= karyawan[i].id %>">
+                        <button>rincian</button>
+                    </a>
+                </td>
+                <td class="p5">
+                    <a href="/karyawan/edit/<%= karyawan[i].id %>">
+                        <button>edit</button>
+                    </a>
+                </td>
+                <td class="p5">
+                    <a href="/karyawan/hapus/<%= karyawan[i].id %>"
+                        onclick="return confirm('Yakin ingin hapus permanen <%= karyawan[i].nama %> ?')">
+                        <button>hapus</button>
+                    </a>
+                </td>
+            </tr>
+        <% } %>
     </tbody>
-
 </table>
-
-
-<!-- <pre>
-    <%= JSON.stringify(karyawan , null , 4) %>
-</pre> -->
